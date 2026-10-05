@@ -11,7 +11,7 @@ COPY frontend/pnpm-lock.yaml frontend/package.json frontend/pnpm-workspace.yaml 
 RUN npm install -g corepack && corepack enable && \
     pnpm install --frozen-lockfile
 COPY frontend/ ./
-ARG RELEASE_VERSION=dev
+ARG RELEASE_VERSION=2.7.0
 RUN echo "{\"VERSION\": \"${RELEASE_VERSION/-g/-}\"}" > src/version.json && pnpm run build
 
 FROM --platform=$BUILDPLATFORM ghcr.io/techknowlogick/xgo:go-1.27.x@sha256:8cc742b41f043a4fd45d2f63f1fcd12cb27949342df09efb5561f2aadfbe6da3 AS apibuilder
